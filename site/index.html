@@ -323,6 +323,10 @@ nav.scrolled {
   gap: 80px;
   align-items: center;
 }
+.about-inner-single {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+}
 
 .about-left .section-label { color: var(--burgundy); }
 .about-left .gold-rule { background: var(--burgundy); }
@@ -941,7 +945,7 @@ footer {
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-inner">
+  <div class="about-inner about-inner-single">
     <div class="about-left">
       <div class="section-label reveal">About LW Ventures</div>
       <div class="gold-rule reveal reveal-delay-1"></div>
@@ -949,24 +953,6 @@ footer {
       <div class="about-body reveal reveal-delay-3">
         <p>The best opportunities don't come from cold outreach — they come from trusted rooms. LW Ventures formalizes those relationships into partnerships, revenue, and investment.</p>
         <p>We are a curated operator network operating at the intersection of advisory, convening, and selective investment. We don't spray and pray. We move with conviction, choose our partners carefully, and build for the long term.</p>
-      </div>
-    </div>
-    <div class="about-right">
-      <div class="about-stat reveal reveal-delay-1">
-        <div class="stat-number">01<span>.</span></div>
-        <div class="stat-label">Trust Over Transactions</div>
-      </div>
-      <div class="about-stat reveal reveal-delay-2">
-        <div class="stat-number">02<span>.</span></div>
-        <div class="stat-label">Operators Over Institutions</div>
-      </div>
-      <div class="about-stat reveal reveal-delay-3">
-        <div class="stat-number">03<span>.</span></div>
-        <div class="stat-label">Access is the New Currency</div>
-      </div>
-      <div class="about-stat reveal reveal-delay-4">
-        <div class="stat-number">04<span>.</span></div>
-        <div class="stat-label">Low Volume, High Signal</div>
       </div>
     </div>
   </div>
@@ -1102,7 +1088,7 @@ footer {
     <h2 class="contact-title reveal reveal-delay-1">Let's find out if<br>we're a <em>fit.</em></h2>
     <p class="contact-sub reveal reveal-delay-2">We're selective about who we work with — and we appreciate when you are too. Tell us a little about yourself and what you're building.</p>
 
-    <form class="contact-form reveal reveal-delay-3" id="contact-form">
+    <form class="contact-form reveal reveal-delay-3" id="contact-form" action="https://formspree.io/f/mwvgydlv" method="POST">
       <div class="form-row">
         <div class="form-field">
           <label class="form-label">Your Name</label>
@@ -1191,8 +1177,21 @@ window.addEventListener('scroll', () => {
 // ── Contact form ──
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('form-success').classList.add('show');
+  const form = this;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(res => {
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('show');
+    } else {
+      alert('Something went wrong sending your message — please email us directly.');
+    }
+  }).catch(() => {
+    alert('Something went wrong sending your message — please email us directly.');
+  });
 });
 </script>
 
