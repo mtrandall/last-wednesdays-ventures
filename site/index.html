@@ -1092,20 +1092,20 @@ footer {
       <div class="form-row">
         <div class="form-field">
           <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" placeholder="Full name" required>
+          <input class="form-input" type="text" name="name" placeholder="Full name" required>
         </div>
         <div class="form-field">
           <label class="form-label">Company</label>
-          <input class="form-input" type="text" placeholder="Company or venture">
+          <input class="form-input" type="text" name="company" placeholder="Company or venture">
         </div>
       </div>
       <div class="form-field">
         <label class="form-label">Email</label>
-        <input class="form-input" type="email" placeholder="your@email.com" required>
+        <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
       </div>
       <div class="form-field">
         <label class="form-label">How can we help?</label>
-        <select class="form-select form-input">
+        <select class="form-select form-input" name="inquiry_type">
           <option value="" disabled selected>Select one...</option>
           <option>Advisory engagement</option>
           <option>Join the network</option>
@@ -1116,7 +1116,7 @@ footer {
       </div>
       <div class="form-field">
         <label class="form-label">What are you working on?</label>
-        <textarea class="form-textarea" placeholder="Tell us what you're building, what stage you're at, and what you're looking for..."></textarea>
+        <textarea class="form-textarea" name="message" placeholder="Tell us what you're building, what stage you're at, and what you're looking for..."></textarea>
       </div>
       <button type="submit" class="form-submit">Send Introduction</button>
     </form>
